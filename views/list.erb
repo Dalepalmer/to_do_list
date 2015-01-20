@@ -17,7 +17,7 @@
 
   <ul>
     <% @list.tasks().each() do |task| %>
-      <li><%= task.description() %><%= task.due_date() %></li>
+      <li><%= task.description() %>   :   <%= task.due_date() %></li>
     <% end %>
   </ul>
 <% else %>

@@ -50,6 +50,7 @@ describe(List) do
     end
   end
 
+
   describe("#tasks") do
     it("returns an array of tasks for that list") do
       test_list = List.new({:name => "Epicodus stuff", :id => nil})
@@ -59,6 +60,20 @@ describe(List) do
       test_task2 = Task.new({:description => "Review Ruby", :list_id => test_list.id(), :due_date => 19920105})
       test_task2.save()
       expect(test_list.tasks()).to(eq([test_task, test_task2]))
+    end
+  end
+
+  describe("#tasks") do
+    it("returns an array of tasks for that list in ascending order") do
+      test_list = List.new({:name => "Epicodus stuff", :id => nil})
+      test_list.save()
+      test_task = Task.new({:description => "learn SQL", :list_id => test_list.id(), :due_date => 20150120})
+      test_task.save()
+      test_task2 = Task.new({:description => "Review Ruby", :list_id => test_list.id(), :due_date => 20150119})
+      test_task2.save()
+      test_task3 = Task.new({:description => "Review Postgres", :list_id => test_list.id(), :due_date => 20150121})
+      test_task3.save()
+      expect(test_list.tasks()).to(eq([test_task2, test_task, test_task3]))
     end
   end
 end
